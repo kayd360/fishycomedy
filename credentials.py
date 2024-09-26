@@ -16,11 +16,20 @@ def get_credentials():
             'organizer_password': st.secrets.get('organizer_password', ''),
         }
         
+        # Debug: Print all available secrets
+        st.write("Available secrets:", list(st.secrets.keys()))
+        
         # Parse gcp_service_account from st.secrets
         gcp_service_account = {}
         if 'gcp_service_account' in st.secrets:
+            st.write("gcp_service_account found in secrets")
             for key in st.secrets['gcp_service_account']:
                 gcp_service_account[key] = st.secrets['gcp_service_account'][key]
+            
+            # Debug: Print keys in gcp_service_account
+            st.write("Keys in gcp_service_account:", list(gcp_service_account.keys()))
+        else:
+            st.write("gcp_service_account not found in secrets")
         
         credentials['gcp_service_account'] = gcp_service_account
 
