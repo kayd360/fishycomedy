@@ -31,7 +31,6 @@ def format_date(date_str):
     return date_obj.strftime("%d %b %Y (%a)")
     
 def main():
-    st.set_page_config(page_title="Fishy Comedy Tuesday Night", page_icon="🎭", layout="wide")
     
     credentials = get_credentials()
     if credentials is None:
