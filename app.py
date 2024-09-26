@@ -1,5 +1,8 @@
 import streamlit as st
-import yaml
+try:
+    import yaml
+except ImportError:
+    yaml = None
 from datetime import datetime
 import time
 from google_sheets import append_to_sheet, get_applicants, get_sheet, update_sheet_status

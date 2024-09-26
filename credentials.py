@@ -1,5 +1,8 @@
 import os
-import yaml
+try:
+    import yaml
+except ImportError:
+    yaml = None
 import json
 import streamlit as st
 
@@ -14,8 +17,13 @@ def get_credentials():
     else:
         # Load local credentials
         try:
-            with open('config.yaml', 'r') as f:
-                config = yaml.safe_load(f)
+            if yaml:
+                with open('config.yaml', 'r') as f:
+                    config = yaml.safe_load(f)
+            else:
+                # Fallback to JSON if YAML is not available
+                with open('config.json', 'r') as f:
+                    config = json.load(f)
             
             with open('fishyintegration-b047f264e30d.json', 'r') as f:
                 gcp_service_account = json.load(f)
