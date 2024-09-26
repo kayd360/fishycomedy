@@ -13,6 +13,7 @@ from validation import is_valid_email, is_valid_phone, format_phone, background_
 from threading import Thread
 from credentials import get_credentials
 
+st.set_page_config(page_title="Fishy Comedy Tuesday Night", page_icon="🎭", layout="wide")
 st.write("Starting the application...")
 
 credentials = get_credentials()
