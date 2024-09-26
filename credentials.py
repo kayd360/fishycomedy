@@ -20,19 +20,22 @@ def get_credentials():
         st.write("Available secrets:", list(st.secrets.keys()))
         
         # Parse gcp_service_account from st.secrets
-        gcp_service_account = {}
         if 'gcp_service_account' in st.secrets:
             st.write("gcp_service_account found in secrets")
-            for key in st.secrets['gcp_service_account']:
-                gcp_service_account[key] = st.secrets['gcp_service_account'][key]
+            try:
+                # Try to parse gcp_service_account as JSON
+                gcp_service_account = json.loads(st.secrets.gcp_service_account)
+            except json.JSONDecodeError:
+                # If it's not JSON, assume it's already a dictionary
+                gcp_service_account = st.secrets.gcp_service_account
             
             # Debug: Print keys in gcp_service_account
             st.write("Keys in gcp_service_account:", list(gcp_service_account.keys()))
         else:
             st.write("gcp_service_account not found in secrets")
+            gcp_service_account = {}
         
         credentials['gcp_service_account'] = gcp_service_account
-
     else:
         # Load local credentials
         try:
@@ -67,6 +70,8 @@ def get_credentials():
     if missing_fields:
         st.error(f"Missing required fields in gcp_service_account: {', '.join(missing_fields)}")
         st.error("Please check your Streamlit secrets or local configuration.")
+        # Debug: Print the contents of gcp_service_account
+        st.write("gcp_service_account contents:", credentials['gcp_service_account'])
         return None
     
     return credentials
