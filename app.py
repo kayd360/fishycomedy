@@ -285,9 +285,14 @@ def show_organizer_interface():
         authenticate_organizer()
 
 def authenticate_organizer():
+    credentials = get_credentials()
+    if credentials is None:
+        st.error("Failed to load credentials. Authentication is not possible.")
+        return
+
     password = st.text_input("Enter organizer password", type="password")
     if st.button("Login"):
-        if password == config['organizer_password']:
+        if password == credentials['organizer_password']:
             st.session_state.authenticated = True
             show_applicants()
         else:
