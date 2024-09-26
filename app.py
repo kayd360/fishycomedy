@@ -20,7 +20,7 @@ if credentials is None:
     st.error("Failed to load credentials. The app cannot function properly.")
     st.stop()
 
-st.write("Credentials loaded successfully.")
+# st.write("Credentials loaded successfully.")
 # st.write("GCP service account keys:", list(credentials['gcp_service_account'].keys()))
 
 ORGANIZER_EMAIL = credentials['organizer_email']

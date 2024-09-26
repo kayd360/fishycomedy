@@ -2,13 +2,13 @@ import streamlit as st
 
 def get_credentials():
     # Debug: Print all available top-level secrets keys
-    st.write("Available top-level secrets:", list(st.secrets.keys()))
+    # st.write("Available top-level secrets:", list(st.secrets.keys()))
 
     # Directly access the nested gcp_service_account
     gcp_service_account = st.secrets.get('gcp_service_account', {})
 
     # Debug: Print keys in gcp_service_account
-    st.write("Keys in gcp_service_account:", list(gcp_service_account.keys()))
+    # st.write("Keys in gcp_service_account:", list(gcp_service_account.keys()))
 
     credentials = {
         'organizer_email': st.secrets.get('organizer_email', ''),
