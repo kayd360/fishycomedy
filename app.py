@@ -13,8 +13,11 @@ from validation import is_valid_email, is_valid_phone, format_phone, background_
 from threading import Thread
 from credentials import get_credentials
 
-# Load configuration
 credentials = get_credentials()
+if credentials is None:
+    st.error("Failed to load credentials. The app cannot function properly.")
+    st.stop()
+
 ORGANIZER_EMAIL = credentials['organizer_email']
 ORGANIZER_PASSWORD = credentials['organizer_password']
 
