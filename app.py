@@ -28,6 +28,15 @@ def format_date(date_str):
 def main():
     st.set_page_config(page_title="Fishy Comedy Tuesday Night", page_icon="🎭", layout="wide")
     
+    credentials = get_credentials()
+    if credentials is None:
+        st.error("Failed to load credentials. The app cannot function properly.")
+        return
+
+    global ORGANIZER_EMAIL, ORGANIZER_PASSWORD
+    ORGANIZER_EMAIL = credentials['organizer_email']
+    ORGANIZER_PASSWORD = credentials['organizer_password']
+    
     # Custom CSS for button styling
     st.markdown("""
     <style>
