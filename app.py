@@ -71,7 +71,7 @@ def main():
     if page == "Apply for Show":
         show_application_form()
     elif page == "Organizer Interface":
-        show_organizer_interface()
+        show_organizer_interface(credentials)
     elif page == "Privacy Policy":
         show_privacy_policy()
 
@@ -289,32 +289,18 @@ def update_sheet_status(confirmation_code, status):
         st.error(f"Error updating Google Sheet: {str(e)}")
         return False
                 
-def show_organizer_interface():
+def show_organizer_interface(credentials):
     st.title("Organizer Interface")
     
     if st.session_state.get('authenticated', False):
         show_applicants()
     else:
-        authenticate_organizer()
+        authenticate_organizer(credentials)
 
-def authenticate_organizer():
-    credentials = get_credentials()
-    if credentials is None:
-        st.error("Failed to load credentials. Authentication is not possible.")
-        return
-
+def authenticate_organizer(credentials):
     password = st.text_input("Enter organizer password", type="password")
     if st.button("Login"):
         if password == credentials['organizer_password']:
-            st.session_state.authenticated = True
-            show_applicants()
-        else:
-            st.error("Incorrect password")
-
-def authenticate_organizer():
-    password = st.text_input("Enter organizer password", type="password")
-    if st.button("Login"):
-        if password == config['organizer_password']:
             st.session_state.authenticated = True
             show_applicants()
         else:
