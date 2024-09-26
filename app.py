@@ -13,6 +13,8 @@ from validation import is_valid_email, is_valid_phone, format_phone, background_
 from threading import Thread
 from credentials import get_credentials
 
+st.write("Starting the application...")
+
 credentials = get_credentials()
 if credentials is None:
     st.error("Failed to load credentials. The app cannot function properly.")

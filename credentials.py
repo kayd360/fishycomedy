@@ -14,7 +14,7 @@ def get_credentials():
         # Debug: Print all available secrets
         st.write("Available secrets:", list(st.secrets.keys()))
         
-        # Correctly access the nested gcp_service_account
+        # Directly access the nested gcp_service_account
         gcp_service_account = st.secrets.get('gcp_service_account', {})
         
         # Debug: Print keys in gcp_service_account
