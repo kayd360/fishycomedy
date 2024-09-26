@@ -14,7 +14,6 @@ from threading import Thread
 from credentials import get_credentials
 
 st.set_page_config(page_title="Fishy Comedy Tuesday Night", page_icon="🎭", layout="wide")
-st.write("Starting the application...")
 
 credentials = get_credentials()
 if credentials is None:
@@ -22,7 +21,7 @@ if credentials is None:
     st.stop()
 
 st.write("Credentials loaded successfully.")
-st.write("GCP service account keys:", list(credentials['gcp_service_account'].keys()))
+# st.write("GCP service account keys:", list(credentials['gcp_service_account'].keys()))
 
 ORGANIZER_EMAIL = credentials['organizer_email']
 ORGANIZER_PASSWORD = credentials['organizer_password']
