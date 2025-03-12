@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 def generate_confirmation_code():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
 
-def calculate_show_dates(start_date=datetime(2025, 1, 15), num_dates=20):
+def calculate_show_dates(start_date=datetime(2025, 3, 18), num_dates=20):
     dates = []
     current_date = start_date
     while len(dates) < num_dates:
